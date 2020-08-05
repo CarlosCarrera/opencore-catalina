@@ -8,14 +8,14 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>SSDT-EC-USBX-AMD.aml</string>
+				<string>SSDT-EC-USBX-DESKTOP.aml</string>
 				<key>Path</key>
-				<string>SSDT-EC-USBX-AMD.aml</string>
+				<string>SSDT-EC-USBX-DESKTOP.aml</string>
 				<key>Enabled</key>
 				<true/>
 			</dict>
 		</array>
-		<key>Block</key>
+		<key>Delete</key>
 		<array>
 			<dict>
 				<key>All</key>
@@ -151,7 +151,7 @@
 			<key>EnableSafeModeSlide</key>
 			<true/>
 			<key>EnableWriteUnprotector</key>
-			<true/>
+			<false/>
 			<key>ForceExitBootServices</key>
 			<false/>
 			<key>ProtectMemoryRegions</key>
@@ -165,18 +165,20 @@
 			<key>RebuildAppleMemoryMap</key>
 			<true/>
 			<key>SetupVirtualMap</key>
-			<false/>
+			<true/>
 			<key>SignalAppleOS</key>
 			<false/>
 			<key>SyncRuntimePermissions</key>
 			<true/>
+			<key>ProvideMaxSlide</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>DeviceProperties</key>
 	<dict>
 		<key>Add</key>
 		<dict/>
-		<key>Block</key>
+		<key>Delete</key>
 		<dict/>
 	</dict>
 	<key>Kernel</key>
@@ -316,6 +318,8 @@
 			<false/>
 			<key>XhciPortLimit</key>
 			<true/>
+			<key>DisableRtcChecksum</key>
+			<false/>
 		</dict>
 		<key>Patch</key>
 		<array>
@@ -1256,8 +1260,6 @@
 			<string>None</string>
 			<key>HideAuxiliary</key>
 			<false/>
-			<key>HideSelf</key>
-			<true/>
 			<key>ConsoleAttributes</key>
 			<integer>0</integer>
 			<key>PickerAttributes</key>
@@ -1287,6 +1289,12 @@
 			<integer>2147483714</integer>
 			<key>Target</key>
 			<integer>67</integer>
+			<key>ApplePanic</key>
+			<true/>
+			<key>SerialInit</key>
+			<false/>
+			<key>SysReport</key>
+			<false/>
 		</dict>
 		<key>Entries</key>
 		<array>
@@ -1321,6 +1329,8 @@
 			<integer>0</integer>
 			<key>Vault</key>
 			<string>Optional</string>
+			<key>BootProtect</key>
+			<string>None</string>
 		</dict>
 		<key>Tools</key>
 		<array>
@@ -1360,7 +1370,9 @@
 				<key>csr-active-config</key>
 				<data>AAAAAA==</data>
 				<key>prev-lang:kbd</key>
-				<data></data>
+				<string>en-US:0</string>
+				<key>run-efi-updater</key>
+				<string>No</string>
 			</dict>
 		</dict>
 		<key>Block</key>
@@ -1380,31 +1392,7 @@
 		<key>LegacyOverwrite</key>
 		<false/>
 		<key>LegacySchema</key>
-		<dict>
-			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
-			<array>
-				<string>EFILoginHiDPI</string>
-				<string>EFIBluetoothDelay</string>
-				<string>LocationServicesEnabled</string>
-				<string>SystemAudioVolume</string>
-				<string>SystemAudioVolumeDB</string>
-				<string>SystemAudioVolumeSaved</string>
-				<string>bluetoothActiveControllerInfo</string>
-				<string>bluetoothInternalControllerInfo</string>
-				<string>flagstate</string>
-				<string>fmm-computer-name</string>
-				<string>nvda_drv</string>
-				<string>prev-lang:kbd</string>
-			</array>
-			<key>8BE4DF61-93CA-11D2-AA0D-00E098032B8C</key>
-			<array>
-				<string>Boot0080</string>
-				<string>Boot0081</string>
-				<string>Boot0082</string>
-				<string>BootNext</string>
-				<string>BootOrder</string>
-			</array>
-		</dict>
+		<dict/>
 		<key>WriteFlash</key>
 		<true/>
 	</dict>
@@ -1461,7 +1449,6 @@
 		<true/>
 		<key>Drivers</key>
 		<array>
-			<string>ApfsDriverLoader.efi</string>
 			<string>OpenCanopy.efi</string>
 			<string>OpenRuntime.efi</string>
 			<string>VBoxHfs.efi</string>
@@ -1493,8 +1480,6 @@
 			<false/>
 			<key>ConsoleMode</key>
 			<string></string>
-			<key>DirectGopCacheMode</key>
-			<string></string>
 			<key>DirectGopRendering</key>
 			<false/>
 			<key>IgnoreTextInGraphics</key>
@@ -1511,8 +1496,10 @@
 			<false/>
 			<key>TextRenderer</key>
 			<string>BuiltinGraphics</string>
+			<key>UgaPassThrough</key>
+			<false/>
 		</dict>
-		<key>Protocols</key>
+		<key>ProtocolOverrides</key>
 		<dict>
 			<key>AppleAudio</key>
 			<false/>
@@ -1542,6 +1529,10 @@
 			<false/>
 			<key>UnicodeCollation</key>
 			<false/>
+			<key>AppleFramebufferInfo</key>
+			<false/>
+			<key>AppleRtcRam</key>
+			<false/>
 		</dict>
 		<key>Quirks</key>
 		<dict>
@@ -1551,13 +1542,43 @@
 			<false/>
 			<key>ReleaseUsbOwnership</key>
 			<false/>
-			<key>RequestBootVarFallback</key>
-			<true/>
 			<key>RequestBootVarRouting</key>
 			<true/>
 			<key>UnblockFsConnect</key>
 			<false/>
+			<key>TscSyncTimeout</key>
+			<integer>0</integer>
+			<key>DeduplicateBootOrder</key>
+			<true/>
 		</dict>
+		<key>APFS</key>
+		<dict>
+			<key>EnableJumpstart</key>
+			<true/>
+			<key>GlobalConnect</key>
+			<false/>
+			<key>HideVerbose</key>
+			<true/>
+			<key>JumpstartHotPlug</key>
+			<false/>
+			<key>MinDate</key>
+			<integer>0</integer>
+			<key>MinVersion</key>
+			<integer>0</integer>
+		</dict>
+		<key>ReservedMemory</key>
+		<array>
+			<dict>
+				<key>Address</key>
+				<integer>268435456</integer>
+				<key>Comment</key>
+				<string>HD3000: IGPU memory corruption errata</string>
+				<key>Enabled</key>
+				<false/>
+				<key>Size</key>
+				<integer>268435456</integer>
+			</dict>
+		</array>
 	</dict>
 </dict>
 </plist>
