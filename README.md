@@ -1,5 +1,5 @@
 # opencore-catalina
-* OpenCore 0.5.7
+* OpenCore
 * Gigabyte b450m DS3H
 * Ryzen 5 3600
 * Radeon RX580
